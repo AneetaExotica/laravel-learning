@@ -15,42 +15,36 @@
          <a href="{{ Route('admin.addcategories') }}"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Add Categoery</font></font></a>
          </li>
          <li>
-            <a href="chart.html"><i class="fa fa-bar-chart-o fa-3x"></i><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Morris Charts</font></font></a>
-         </li>
-         <li>
-            <a href="table.html"><i class="fa fa-table fa-3x"></i><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Table Examples</font></font></a>
-         </li>
-         <li>
-            <a href="form.html"><i class="fa fa-edit fa-3x"></i><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Forms</font></font></a>
-         </li>
-         <li>
-            <a href="#"><i class="fa fa-sitemap fa-3x"></i><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Multi-Level Dropdown</font></font><span class="fa arrow"></span></a>
-            <ul class="nav nav-second-level collapse">
+            <a href="#"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Banners</font></font><span class="fa arrow"></span></a>
+            <ul class="nav nav-second-level collapse" style="height: 0px;">
                <li>
-                  <a href="#"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Second Level Link</font></font></a>
+                  <a href="{{ Route('admin.add-banners') }}"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Add Banner</font></font></a>
                </li>
                <li>
-                  <a href="#"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Second Level Link</font></font></a>
+                  <a href="{{ Route('admin.show-banners') }}"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Banner List</font></font></a>
                </li>
-               <li>
-                  <a href="#"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Second Level Link</font></font><span class="fa arrow"></span></a>
-                  <ul class="nav nav-third-level collapse">
-                     <li>
-                        <a href="#"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Third Level Link</font></font></a>
-                     </li>
-                     <li>
-                        <a href="#"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Third Level Link</font></font></a>
-                     </li>
-                     <li>
-                        <a href="#"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Third Level Link</font></font></a>
-                     </li>
-                  </ul>
-               </li>
+               
             </ul>
          </li>
          <li>
-            <a href="blank.html"><i class="fa fa-square-o fa-3x"></i><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Blank Page</font></font></a>
+            <a href="table.html"><font style="vertical-align: inherit;">Theme Options</font></font></a>
          </li>
+         <li>
+            <a href="form.html"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Book yours now</font></font></a>
+         </li>
+         
       </ul>
    </div>
 </nav>
+
+<!-- <script src="{{ asset('/admin-styles/assets/js/jquery-1.10.2.js') }}"></script> -->
+      <!-- BOOTSTRAP SCRIPTS -->
+    <script src="{{ asset('/admin-styles/assets/js/bootstrap.min.js') }}"></script>
+    <!-- METISMENU SCRIPTS -->
+    <script src="{{ asset('/admin-styles/assets/js/jquery.metisMenu.js') }}"></script>
+     <!-- MORRIS CHART SCRIPTS -->
+     <script src="{{ asset('/admin-styles/assets/js/morris/raphael-2.1.0.min.js') }}"></script>
+    <script src="{{ asset('/admin-styles/assets/js/morris/morris.js') }}"></script>
+      <!-- CUSTOM SCRIPTS -->
+    <script src="{{ asset('/admin-styles/assets/js/custom.js') }}"></script>
+    

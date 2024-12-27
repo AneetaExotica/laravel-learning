@@ -10,7 +10,7 @@
             </div>
             <a class="btn-primary add_new_post" href="{{Route('admin.blogs.create')}}">Add New blog</a>
             <div class="panel-body">
-                <div class=edit"table-responsive">
+                <div class="table-responsive">
                     <div id="dataTables-example_wrapper" class="dataTables_wrapper form-inline" role="grid">
                         <div class="row">
                             <div class="col-sm-6">
@@ -57,8 +57,14 @@
                                             <td class="sorting_1">{{$blog->name}}</td>
                                             <td class=" ">{{$blog->description}}</td>
                                             <td><img src="{{ asset('storage/' . $blog->image) }}" style="width:200px" alt="Blog Image"></td>                                            
-                                            <td class=" "><a href="{{ route('admin.edit', ['id' => $blog->id]) }}">Edit</a></td>
-                                            <td class=" "><a href="/admin/edit/?id={{$blog->id}}">Delete</a></td>
+                                            <td><a href="{{ route('admin.blogedit', ['id' => $blog->id]) }}">Edit</a></td>
+
+                                            <td class=" "><form action="{{ route('admin.blogdelete', ['id' => $blog->id]) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this banner?');">
+                                                @csrf
+                                                @method('DELETE')  
+                                                <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                                              </form>
+                                            </td>
                                         </tr>
                                         @endforeach
                                     </tbody>

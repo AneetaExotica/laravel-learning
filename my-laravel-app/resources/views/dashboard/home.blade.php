@@ -218,4 +218,4 @@
     <!-- SCRIPTS -AT THE BOTOM TO REDUCE THE LOAD TIME-->
     <!-- JQUERY SCRIPTS -->
     
-@include('dashboard.layouts.footer')
+@include('dashboard.layouts.footer') 

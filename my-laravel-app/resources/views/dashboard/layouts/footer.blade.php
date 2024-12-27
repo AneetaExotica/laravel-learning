@@ -1,9 +1,5 @@
 
-<script type="text/javascript">
-        $(document).ready(function() {
-          $('.summernote').summernote();
-        });
-    </script>
+
 <script src="{{ asset('/admin-styles/assets/js/jquery-1.10.2.js') }}"></script>
       <!-- BOOTSTRAP SCRIPTS -->
     <script src="{{ asset('/admin-styles/assets/js/bootstrap.min.js') }}"></script>

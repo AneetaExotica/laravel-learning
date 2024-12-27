@@ -3,6 +3,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Admin\blogs;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Admin\Storage;
 class BlogsController extends Controller
 {
     public function index()
@@ -11,7 +12,7 @@ class BlogsController extends Controller
     }
     public function create()
     {
-        return view('dashboard.blogs'); // return the view for creating a blog
+        return view('dashboard.blogs'); 
     }
     
     public function store(Request $request)
@@ -71,7 +72,7 @@ class BlogsController extends Controller
     public function edit($id)
     {
         $blog = Blogs::findOrFail($id); // Correct the variable name to $blog
-        return view('dashboard.edit', compact('blog'));
+        return view('dashboard.editblog', compact('blog'));
     }
     
 
@@ -83,26 +84,29 @@ class BlogsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
-    {
-        $blogUpdate = Blogs::findOrFail($id);
-         $validatedData = $request->validate([
-            'name' => 'required',
-            'description' => 'required',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048', 
-             
-        ]);
-        $blogUpdate->title = $validatedData['name'];
-        $blogUpdate->content = $validatedData['description'];
-        if ($request->hasFile('image')) {
-            if ($blogUpdate->image) {
-                Storage::delete($blogUpdate->image);
-            }
-          $path = $request->file('image')->store('images', 'public'); // Save in the 'images' folder
-          $blogUpdate->image = $path;
+{
+    // dd($request);
+    $validated = $request->validate([
+        'name' => 'required',
+        'description' => 'required',
+        'image' => 'nullable|image|mimes:jpg,png,gif,jpeg',  // Optional image field
+        
+    ]);
+    $banner = Blogs::findOrFail($id);
+    $imagePath = null;
+    if ($request->hasFile('image')) {
+        $file = $request->file('image');
+        if ($file->isValid()) {
+            $imagePath = $file->store('blogimages', 'public');
         }
-        $blogUpdate->save();
-        return redirect()->route('admin.showbloglist')->with('success', 'Blog updated successfully!');
     }
+    $banner->update([
+        'name' => $request->input('title'),
+        'description' => $request->input('description'),
+        'image' => $imagePath ?: $banner->image,  // Keep old image if new one is not uploaded
+    ]);
+    return redirect()->route('admin.showbloglist')->with('success', 'Banner updated successfully');
+}
     
 
     /**
@@ -111,10 +115,15 @@ class BlogsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
-    {
-        
-    }
     
+     public function destroy($id)
+     {
+         $blogs = Blogs::findOrFail($id);
+         if (file_exists(public_path('storage/' . $blogs->image)) && $blogs->image) {
+             unlink(public_path('storage/' . $blogs->image));
+         }
+         $blogs->delete();
+        return redirect()->route('admin.showbloglist')->with('success', 'Banner deleted successfully.');
+     }
    
 }

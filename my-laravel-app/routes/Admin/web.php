@@ -23,11 +23,17 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::get('show-list', [BlogsController::class, 'show'])->name('showbloglist');
     Route::get('blogs', [BlogsController::class, 'index'])->name('blogs.index');
     Route::post('blogs', [BlogsController::class, 'store'])->name('blogs.store');
-    Route::get('edit/{id}', [BlogsController::class, 'edit'])->name('edit');
-    Route::post('update/{id}', [BlogsController::class, 'update'])->name('update');
+    Route::get('blogedit/{id}', [BlogsController::class, 'edit'])->name('blogedit');
+    Route::post('/blog-update/{id}', [BlogsController::class, 'update'])->name('updateblog');
+    Route::delete('blogs/delete/{id}', [BlogsController::class, 'destroy'])->name('blogdelete');
+    
     Route::get('categories', [CategoriesController::class, 'index'])->name('addcategories');
     Route::post('create-categories',[CategoriesController::class,'store'])->name('createcategories');
     Route::get('add-banner',[BannersController::class, 'index'])->name('add-banners');
     Route::post('create-banner',[BannersController::class, 'store'])->name('create-banner');
     Route::get('show-banners',[BannersController::class,'show'])->name('show-banners');
+    Route::get('/banner-edit/{id}', [BannersController::class, 'edit'])->name('banneredit');
+    Route::post('/banner-update/{id}', [BannersController::class, 'update'])->name('bannerupdate');
+    Route::delete('/banner-delete/{id}', [BannersController::class, 'destroy'])->name('bannerdelete');
+    
 });
